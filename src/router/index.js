@@ -123,7 +123,9 @@ export const constantRoutes = [
         meta: { title: 'profile', icon: 'user', noCache: true }
       }
     ]
-  }
+  },
+  adminRouter,
+  userRouter
 ]
 
 export const RouterList = []

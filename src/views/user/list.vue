@@ -136,7 +136,7 @@
       @current-change="currentpage"
     />
     <el-dialog :visible.sync="dialogVisible" :title="$t(dialogType)">
-      <form-create v-model="fApi" :rule="rule" :value.sync="value" :option="option" />
+      <form-create v-model="formcreate.fApi" :rule="formcreate.rule" :value.sync="value" :option="formcreate.option" />
     </el-dialog>
   </div>
 </template>
@@ -171,14 +171,18 @@ export default {
       dialogType: 'user.list.adduser',
       updata_url: '',
       headers: {},
-      fApi: {},
       value: {},
-      rule: [],
-      option: {
-        form: {
-          labelWidth: 'auto'
-        },
-        resetBtn: true
+      formcreate: {
+        fApi: {},
+        rule: [],
+        option: {
+          form: {
+            labelWidth: 'auto'
+          },
+          onSubmit: null,
+          resetBtn: true
+        }
+
       }
     }
   },
@@ -204,7 +208,7 @@ export default {
     handleadd() {
       this.dialogVisible = true
       this.dialogType = 'user.list.adduser'
-      this.rule =
+      this.formcreate.rule =
       [{
         type: 'el-row',
         native: true,
@@ -297,7 +301,7 @@ export default {
           }
         ]
       }]
-      this.option.onSubmit = async(formData) => {
+      this.formcreate.option.onSubmit = async(formData) => {
         const { message } = await addUser(formData)
         this.$message({
           message: message,
@@ -308,9 +312,17 @@ export default {
       }
     },
     async handleEdit(id) {
-      this.rule = []
       const { data } = await geteditUser(id)
-      this.rule =
+      this.formcreate.option.onSubmit = async(formData) => {
+        const { message } = await editUser(formData)
+        this.$message({
+          message: message,
+          type: 'success'
+        })
+        this.dialogVisible = false
+        this.getList()
+      }
+      this.formcreate.rule =
       [{
         type: 'el-row',
         native: true,
@@ -414,15 +426,6 @@ export default {
       this.value = data
       this.dialogType = 'user.list.edituser'
       this.dialogVisible = true
-      this.option.onSubmit = async(formData) => {
-        const { message } = await editUser(formData)
-        this.$message({
-          message: message,
-          type: 'success'
-        })
-        this.dialogVisible = false
-        this.getList()
-      }
     },
     async alterState(id) {
       const { message } = await alterState(id)
@@ -435,7 +438,16 @@ export default {
     editmoney(id) {
       this.dialogVisible = true
       this.dialogType = 'form.money'
-      this.rule =
+      this.formcreate.option.onSubmit = async(formData) => {
+        const { message } = await editMoney(formData)
+        this.$message({
+          message: message,
+          type: 'success'
+        })
+        this.dialogVisible = false
+        this.getList()
+      }
+      this.formcreate.rule =
       [{
         type: 'el-row',
         native: true,
@@ -490,8 +502,12 @@ export default {
           }
         ]
       }]
-      this.option.onSubmit = async(formData) => {
-        const { message } = await editMoney(formData)
+    },
+    editintegral(id) {
+      this.dialogVisible = true
+      this.dialogType = 'form.integral'
+      this.formcreate.option.onSubmit = async(formData) => {
+        const { message } = await editIntegral(formData)
         this.$message({
           message: message,
           type: 'success'
@@ -499,11 +515,7 @@ export default {
         this.dialogVisible = false
         this.getList()
       }
-    },
-    editintegral(id) {
-      this.dialogVisible = true
-      this.dialogType = 'form.integral'
-      this.rule =
+      this.formcreate.rule =
       [{
         type: 'el-row',
         native: true,
@@ -558,15 +570,6 @@ export default {
           }
         ]
       }]
-      this.option.onSubmit = async(formData) => {
-        const { message } = await editIntegral(formData)
-        this.$message({
-          message: message,
-          type: 'success'
-        })
-        this.dialogVisible = false
-        this.getList()
-      }
     },
     sizepage(val) {
       this.listQuery.limit = val
