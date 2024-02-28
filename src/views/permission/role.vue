@@ -107,8 +107,9 @@ export default {
       this.routes = this.i18n(routes)
     },
     async getRoles() {
-      const res = await getRoles()
-      this.rolesList = res.data
+      const { data } = await getRoles()
+      this.rolesList = data
+      console.log(this.rolesList)
     },
     i18n(routes) {
       const app = routes.map(route => {

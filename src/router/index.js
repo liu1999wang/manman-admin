@@ -11,6 +11,8 @@ import componentsRouter from './modules/components'
 import chartsRouter from './modules/charts'
 import tableRouter from './modules/table'
 import nestedRouter from './modules/nested'
+import adminRouter from './modules/admin'
+import userRouter from './modules/user'
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -124,11 +126,8 @@ export const constantRoutes = [
   }
 ]
 
-/**
- * asyncRoutes
- * the routes that need to be dynamically loaded based on user roles
- */
-export const asyncRoutes = [
+export const RouterList = []
+RouterList['admin/list'] = [
   {
     path: '/permission',
     component: Layout,
@@ -170,7 +169,16 @@ export const asyncRoutes = [
       }
     ]
   },
+  tableRouter,
+  adminRouter,
+  userRouter
 
+]
+/**
+ * asyncRoutes
+ * the routes that need to be dynamically loaded based on user roles
+ */
+export const asyncRoutes = [
   {
     path: '/icon',
     component: Layout,

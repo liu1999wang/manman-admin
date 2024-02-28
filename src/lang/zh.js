@@ -3,6 +3,10 @@ export default {
     dashboard: '首页',
     documentation: '文档',
     guide: '引导页',
+    admin: '管理员管理',
+    adminlist: '管理员列表',
+    adminrole: '角色列表',
+    adminpermission: '权限列表',
     permission: '权限测试页',
     rolePermission: '角色权限',
     pagePermission: '页面权限',
@@ -62,7 +66,10 @@ export default {
     clipboardDemo: 'Clipboard',
     i18n: '国际化',
     externalLink: '外链',
-    profile: '个人中心'
+    profile: '个人中心',
+    user: '用户管理',
+    userlist: '用户列表',
+    moneysstatement: '货币流水'
   },
   navbar: {
     dashboard: '首页',
@@ -79,21 +86,65 @@ export default {
     password: '密码',
     any: '随便填',
     thirdparty: '第三方登录',
-    thirdpartyTips: '本地不能模拟，请结合自己业务进行模拟！！！'
+    thirdpartyTips: '本地不能模拟，请结合自己业务进行模拟！！！',
+    Confirmlogout: '确定注销',
+    logoutTxt: '您已登出，您可以取消停留在此页面，或重新登录',
+    reLogIn: '重新登录'
   },
   documentation: {
     documentation: '文档',
     github: 'Github 地址'
   },
-  permission: {
-    addRole: '新增角色',
-    editPermission: '编辑权限',
-    roles: '你的权限',
-    switchRoles: '切换权限',
-    tips: '在某些情况下，不适合使用 v-permission。例如：Element-UI 的 el-tab 或 el-table-column 以及其它动态渲染 dom 的场景。你只能通过手动设置 v-if 来实现。',
-    delete: '删除',
-    confirm: '确定',
-    cancel: '取消'
+  // 管理员管理
+  admin: {
+    list: {
+      addadmin: '添加管理员',
+      head_img: '头像',
+      user_name: '名称',
+      email: '邮箱',
+      ip: 'IP',
+      address: '地址',
+      lately_time: '最近登录时间',
+      status: '状态',
+      actions: '操作',
+      disabled: '禁止',
+      normal: '正常',
+      newadmin: '新 管理员',
+      editadmin: '编辑 管理员',
+      creation_time: '创建时间',
+      updata_time: '修改时间',
+      endowrole: '赋予角色'
+    },
+    role: {
+      addrole: '添加角色',
+      name: '名称',
+      describe: '描述',
+      status: '状态',
+      actions: '操作',
+      disabled: '禁止',
+      normal: '正常',
+      newrole: '新 角色',
+      editrole: '编辑 角色',
+      endowpermission: '赋予权限'
+    },
+    permission: {
+      addpermission: '添加权限',
+      name: '名称',
+      url: '路径',
+      parent: '父级',
+      show: '显示',
+      hide: '隐藏',
+      actions: '操作',
+      editpermission: '编辑 权限',
+      alldelete: '批量删除'
+    }
+  },
+  // 用户管理
+  user: {
+    list: {
+      adduser: '新增用户',
+      edituser: '编辑用户'
+    }
   },
   guide: {
     description: '引导页对于一些第一次进入项目的人很有用，你可以简单介绍下项目的功能。本 Demo 是基于',
@@ -114,6 +165,17 @@ export default {
     dragTips1: '默认顺序',
     dragTips2: '拖拽后顺序',
     title: '标题',
+    name: '名称',
+    head_img: '头像',
+    phone: '手机号',
+    email: '邮箱',
+    money: '红包',
+    integral: '积分',
+    ip: 'ip',
+    address: '地址',
+    creation_time: '创建时间',
+    updata_time: '修改时间',
+    lately_time: '活跃时间',
     importance: '重要性',
     type: '类型',
     remark: '点评',
@@ -126,13 +188,19 @@ export default {
     author: '作者',
     readings: '阅读数',
     status: '状态',
+    disabled: '禁止',
+    normal: '正常',
     actions: '操作',
     edit: '编辑',
+    revamp: '修改',
     publish: '发布',
     draft: '草稿',
     delete: '删除',
     cancel: '取 消',
-    confirm: '确 定'
+    confirm: '确 定',
+    common: '普通',
+    vip: 'vip',
+    virtual: '虚拟'
   },
   example: {
     warning: '创建和编辑页面是不能被 keep-alive 缓存的，因为keep-alive 的 include 目前不支持根据路由来缓存，所以目前都是基于 component name 来进行缓存的。如果你想类似的实现缓存效果，可以使用 localStorage 等浏览器缓存方案。或者不要使用 keep-alive 的 include，直接缓存所有页面。详情见'
@@ -171,5 +239,47 @@ export default {
     tagsView: '开启 Tags-View',
     fixedHeader: '固定 Header',
     sidebarLogo: '侧边栏 Logo'
+  },
+  // 弹窗
+  popup: {
+    deletetext: '此操作将永久删除该数据, 是否继续?',
+    hint: '提示',
+    confirm: '确定',
+    cancel: '取消'
+  },
+  // 时间符号
+  time: {
+    now: '刚刚',
+    minute: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    week: '周前',
+    month: '月前',
+    year: '年前'
+  },
+  // 表单
+  form: {
+    name: '名称',
+    password: '密码',
+    email: '邮箱',
+    head_img: '头像',
+    phone: '手机号',
+    describe: '描述',
+    edit: '编辑',
+    endow: '赋予',
+    accredit: '授权',
+    confirm: '确定',
+    cancel: '取消',
+    please_select: '请选择',
+    required: '这是必填项',
+    common: '普通',
+    vip: 'vip',
+    virtual: '虚拟',
+    type: '类型',
+    invite_code: '邀请码',
+    increase: '增加',
+    reduce: '减少',
+    money: '红包',
+    integral: '积分'
   }
 }
